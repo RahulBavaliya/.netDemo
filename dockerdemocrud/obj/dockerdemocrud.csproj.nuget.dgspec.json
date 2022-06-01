@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\.net\\dockerdemocrud\\dockerdemocrud.csproj": {}
+    "C:\\Projects\\.netDemo\\dockerdemocrud\\dockerdemocrud.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\.net\\dockerdemocrud\\dockerdemocrud.csproj": {
+    "C:\\Projects\\.netDemo\\dockerdemocrud\\dockerdemocrud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\.net\\dockerdemocrud\\dockerdemocrud.csproj",
+        "projectUniqueName": "C:\\Projects\\.netDemo\\dockerdemocrud\\dockerdemocrud.csproj",
         "projectName": "dockerdemocrud",
-        "projectPath": "C:\\Projects\\.net\\dockerdemocrud\\dockerdemocrud.csproj",
+        "projectPath": "C:\\Projects\\.netDemo\\dockerdemocrud\\dockerdemocrud.csproj",
         "packagesPath": "C:\\Users\\rahul__1204\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\.net\\dockerdemocrud\\obj\\",
+        "outputPath": "C:\\Projects\\.netDemo\\dockerdemocrud\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rahul__1204\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,28 @@ namespace dockerdemocrud
                 });
             });
 
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Test API",
+                    Description = "A simple example for swagger api information",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Your Name XYZ",
+                        Email = "xyz@gmail.com",
+                        Url = new Uri("https://example.com"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under OpenApiLicense",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+            });
+
+
             services.AddControllersWithViews();
 
         }
@@ -66,6 +89,12 @@ namespace dockerdemocrud
 
             app.UseAuthorization();
 
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
