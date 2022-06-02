@@ -19,6 +19,7 @@ namespace dockerdemocrud.Controllers
         }
 
         List<Movie> movies = new List<Movie>();
+
         public IActionResult Index()
         {
             //context.Movie.ToList();
@@ -42,6 +43,7 @@ namespace dockerdemocrud.Controllers
         }
 
         [HttpGet]
+        [Route("home/getMovieList")]
         public List<Movie> getMovieList()
         {
             var m = "a";//we need to return list of movie 
@@ -59,6 +61,7 @@ namespace dockerdemocrud.Controllers
 
 
         [HttpPost]
+        [Route("home/sendData")]
         public List<Movie> sendData([FromBody()] Movie movie1)
         {
             var m = movie1;//we need to return list of movie 
