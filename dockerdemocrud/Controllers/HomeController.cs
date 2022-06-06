@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace dockerdemocrud.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly String connectionString = "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -19,6 +22,7 @@ namespace dockerdemocrud.Controllers
         }
 
         List<Movie> movies = new List<Movie>();
+        List<Movies> movieslist = new List<Movies>();
 
         public IActionResult Index()
         {
@@ -57,6 +61,30 @@ namespace dockerdemocrud.Controllers
                 movies.Add(movie);
             }
             return movies;
+
+
+
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                  
+                    Movies movie = new Movies();
+                    movie.mid = Convert.ToInt32(rdr["mid"]);
+                    movie.mname = rdr["mname"].ToString();
+                    movie.mdescription = rdr["mdescription"].ToString();
+                    movie.mdescription = rdr["mactors"].ToString();
+
+                    movieslist.Add(movie);
+                }
+            }
+
         }
 
 

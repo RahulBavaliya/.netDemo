@@ -17,4 +17,12 @@ namespace dockerdemocrud.Models
         [Required]
         public string Actors { get; set; }
     }
+
+    public class Movies
+    {
+        public int mid { get; set; }
+        public string mname { get; set; }
+        public string mdescription  { get; set; }
+        public string mactors { get; set; }
+    }
 }
