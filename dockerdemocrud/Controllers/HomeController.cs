@@ -1,5 +1,6 @@
 ﻿using dockerdemocrud.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,18 @@ namespace dockerdemocrud.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly String connectionString = "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IConfiguration configuration)
         {
-            _logger = logger;
+            this._configuration = configuration;
         }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         List<Movie> movies = new List<Movie>();
         List<Movies> movieslist = new List<Movies>();
@@ -48,43 +54,46 @@ namespace dockerdemocrud.Controllers
 
         [HttpGet]
         [Route("home/getMovieList")]
-        public List<Movie> getMovieList()
+        public List<Movies> getMovieList()
         {
-            var m = "a";//we need to return list of movie 
+            //var m = "a";//we need to return list of movie 
 
-            for (int i = 0; i < 25; i++)
+            //for (int i = 0; i < 25; i++)
+            //{
+            //    Movie movie = new Movie();
+            //    movie.Id = i.ToString() + 1;
+            //    movie.Name = "ABCD"+i;
+            //    movie.Actors = "Don't know"+i;
+            //    movies.Add(movie);
+            //}
+            //return movies;
+
+            using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
             {
-                Movie movie = new Movie();
-                movie.Id = i.ToString() + 1;
-                movie.Name = "ABCD"+i;
-                movie.Actors = "Don't know"+i;
-                movies.Add(movie);
-            }
-            return movies;
-
-
-
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", con);
-                cmd.CommandType = CommandType.Text;
-                con.Open();
-
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                DataTable dtbl = new DataTable();
+                sqlConnection.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("getMovie", sqlConnection);
+                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlDa.Fill(dtbl);
+                for (int i = 0; i < dtbl.Rows.Count; i++)
                 {
-                  
+
+
+
                     Movies movie = new Movies();
-                    movie.mid = Convert.ToInt32(rdr["mid"]);
-                    movie.mname = rdr["mname"].ToString();
-                    movie.mdescription = rdr["mdescription"].ToString();
-                    movie.mdescription = rdr["mactors"].ToString();
+                    movie.mid = Convert.ToInt32(dtbl.Rows[i]["mid"]);
+                    movie.mname = dtbl.Rows[i]["mname"].ToString();
+                    movie.mdescription = dtbl.Rows[i]["mdescription"].ToString();
+                    movie.mdescription = dtbl.Rows[i]["mactors"].ToString();
 
                     movieslist.Add(movie);
+
                 }
             }
+                
+            return movieslist;
 
+            
         }
 
 

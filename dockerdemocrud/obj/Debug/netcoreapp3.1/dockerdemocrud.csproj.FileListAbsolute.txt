@@ -160,3 +160,9 @@ C:\Projects\.netDemo\dockerdemocrud\obj\Debug\netcoreapp3.1\dockerdemocrud.cspro
 C:\Projects\.netDemo\dockerdemocrud\obj\Debug\netcoreapp3.1\dockerdemocrud.dll
 C:\Projects\.netDemo\dockerdemocrud\obj\Debug\netcoreapp3.1\dockerdemocrud.pdb
 C:\Projects\.netDemo\dockerdemocrud\obj\Debug\netcoreapp3.1\dockerdemocrud.genruntimeconfig.cache
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Projects\.netDemo\dockerdemocrud\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
